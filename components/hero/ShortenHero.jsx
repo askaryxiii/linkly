@@ -1,8 +1,27 @@
+"use client";
 import React from "react";
 
 const ShortenHero = () => {
+  const shortLink = () => {
+    event.preventDefault();
+    const options = {
+      method: "POST",
+      headers: {
+        "x-api-key": "PT9gpxCkiS7MdL5PnYg9Ubx0qmMqF",
+        "Content-Type": "application/json",
+      },
+      body: '{"url":"https://www.reddit.com/r/opensource/comments/187krxn/minimalist_url_shortener_with_analytics_all_free/"}',
+    };
+    fetch("https://ishortn.ink/api/v1/links", options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  };
+
   return (
-    <form className="bg-bgGrey rounded-full flex items-center gap-4 w-1/3 p-1 pl-5 border-[3px] border-gray-600">
+    <form
+      onSubmit={shortLink}
+      className="bg-bgGrey rounded-full flex items-center gap-4 w-1/3 p-1 pl-5 border-[3px] border-gray-600">
       <svg
         width="19"
         height="19"
